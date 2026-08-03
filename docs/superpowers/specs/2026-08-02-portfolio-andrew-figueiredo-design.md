@@ -201,7 +201,7 @@ concorrentes analisados.
   e MongoDB.
 - **Graduação em Matemática Computacional — UFPB** (Jul/2016 – Dez/2021). Álgebra linear
   computacional, cálculo numérico, otimização, análise numérica, modelagem matemática.
-- **Pesquisa: Projeto Keep Chat — FAPESQ / SECTIES-PB** (atual). Iniciativa educativa de
+- **Pesquisa: Projeto Keep Chat — FAPESQ / SECTIES-PB** (Set/2025 – atual). Iniciativa educativa de
   capacitação e treinamento em ferramentas de IA generativa, com propósito de impacto social
   positivo, conforme [Edital nº 30/2025 — SECTIES/FAPESQ/PB](https://fapesq.rpp.br/editais/2025/edital-no-30-2025-selecao-de-pesquisadores-para-o-projeto-keep-chat).
   Nesta seção o recorte é o **conteúdo da pesquisa**; a seção 9 registra o vínculo e as datas.
@@ -216,18 +216,22 @@ matemática para entender por que os modelos funcionam — não apenas consumi-l
 
 ### Experiência (`src/data/experience.ts`)
 
-1. **Pesquisador — Projeto Keep Chat** | FAPESQ / SECTIES-PB | `// TODO: mês de início` – atual
+Dois vínculos são simultâneos e devem aparecer assim na timeline: CODATA é o emprego e
+Keep Chat é bolsa de pesquisa de 20h semanais. A timeline precisa deixar essa natureza
+distinta legível, para que a sobreposição de datas não pareça inconsistência.
+
+1. **Pesquisador — Analista de TI | Projeto Keep Chat** | FAPESQ / SECTIES-PB | Set/2025 – atual
    Recorte de vínculo: pesquisa aplicada em IA generativa com fomento público estadual,
    20h semanais.
 2. **Analista de TI — Desenvolvimento e Qualidade** | CODATA (Companhia de Dados da Paraíba)
-   | Nov/2024 – `// TODO: mês de encerramento`
+   | Nov/2024 – atual
    - Desenvolvimento de suítes de automação em Python com Playwright e Pytest
    - Implementação de BDD (Pytest-BDD) e integração de relatórios ao pipeline
    - Análise de qualidade de código com SonarQube
    - Construção de dashboards de acompanhamento técnico
    - Testes de desempenho e análise de gargalos de aplicação
-3. **ENACOM** | Jul/2021 – atual — bloco único com progressão interna:
-   - **Analista de Qualidade de Software V — Líder Técnico** (Fev/2023 – atual): liderança
+3. **ENACOM** | Jul/2021 – Out/2024 — bloco único com progressão interna:
+   - **Analista de Qualidade de Software V — Líder Técnico** (Fev/2023 – Out/2024): liderança
      técnica de equipe definindo padrões de código e processo; automações em Python para
      otimização de fluxos; administração de pipeline e TestPlan em Azure DevOps; atuação
      junto ao cliente na operação assistida do sistema
@@ -346,9 +350,10 @@ Nenhum IP, usuário ou chave versionado. `.env` + `.env.example`.
 
 Bloqueiam o conteúdo final, não a construção do site. O site sobe com marcadores visíveis.
 
-- [ ] CODATA: mês/ano de encerramento (somente ENACOM e Keep Chat são atuais)
-- [ ] Keep Chat: mês de início e perfil (Engenheiro de Software ou Analista de TI)
-- [ ] Keep Chat: artefato público linkável, se houver — caso contrário usar o link do edital
+- [x] Datas confirmadas: ENACOM Jul/2021 – Out/2024 (encerrada em 30/10/2024, imediatamente
+      antes da CODATA); CODATA Nov/2024 – atual; Keep Chat Set/2025 – atual, perfil Analista de TI
+- [x] Keep Chat não tem artefato público por enquanto — usar o link do edital como referência.
+      Revisitar quando houver site, repositório ou material de curso publicado
 - [ ] Nove projetos reais substituindo o seed
 - [ ] `og-image.png` (1200×630)
 - [ ] CV em PDF para `public/cv-andrew-figueiredo.pdf` (existe `CV Andrew - PT BR (1).pdf`
