@@ -1,9 +1,17 @@
-export default async function Page() {
+import { notFound } from 'next/navigation';
+import { isLocale } from '@/i18n';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+
   return (
-    <main className="p-8">
-      <p className="font-mono text-accent text-xs uppercase tracking-widest">token check</p>
-      <h1 className="font-head text-4xl font-bold tracking-tight">Andrew Figueiredo</h1>
-      <div className="mt-4 border border-line bg-bg-soft p-4">borda e fundo</div>
-    </main>
+    <>
+      <Navbar lang={lang} />
+      <main />
+      <Footer lang={lang} />
+    </>
   );
 }
