@@ -5,10 +5,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Visão geral
 
 Portfólio pessoal de Andrew Figueiredo em `andrewfigueiredo.dev`. Next.js 15 (App Router) +
-TypeScript + Tailwind v4, bilíngue PT/EN, exportado como site estático e servido por Nginx em
-container. Sem backend, banco ou formulário com submit.
+TypeScript + Tailwind v4, bilíngue PT/EN, exportado como site estático. Sem backend, banco ou
+formulário com submit.
 
 Spec de design: `docs/superpowers/specs/2026-08-02-portfolio-andrew-figueiredo-design.md`.
+
+## Ambiente de produção — leia antes de mexer em deploy
+
+**A VPS é compartilhada.** Um único Nginx (`admin_corretor-nginx-1`) ocupa as portas 80/443 e
+atende `andrewfigueiredo.dev`, `imov.`, `robot.`, `evolutionapi.` e `anderson.`. Este projeto é
+dono **apenas do apex**.
+
+O apex é servido como arquivos estáticos de `/opt/andrew-portfolio`. O deploy é `rsync` do
+`out/` para esse diretório — nada de container, imagem, registry ou certbot. TLS é certificado
+de origem da Cloudflare, gerido fora deste repositório.
+
+**Nunca** adicione ao deploy algo que crie, reinicie ou pare containers, ou que faça bind em
+porta: derruba os outros domínios. Detalhes em `infra/vps/README.md`.
 
 ## Comandos
 

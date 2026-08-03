@@ -1,7 +1,8 @@
 # andrewfigueiredo.dev
 
 Portfólio pessoal de Andrew Figueiredo — desenvolvimento de sistemas, consultoria em IA e
-automação. Site estático bilíngue (PT-BR / EN) em Next.js, servido por Nginx em container.
+automação. Site estático bilíngue (PT-BR / EN) em Next.js, publicado por rsync num Nginx
+compartilhado que já roda na VPS.
 
 ## Rodar localmente
 
@@ -52,99 +53,67 @@ roda com `unoptimized: true`, com as imagens dimensionadas antes do commit.
 `trailingSlash: true` é obrigatório: o export gera `out/pt/index.html`, e sem ele `/pt` e `/pt/`
 passariam a existir como conteúdo duplicado aos olhos do Google.
 
+## Onde o site roda
+
+O apex `andrewfigueiredo.dev` é servido como **arquivos estáticos** por um Nginx compartilhado
+que já roda na VPS — o container `admin_corretor-nginx-1`, que também atende `imov.`, `robot.`,
+`evolutionapi.` e `anderson.` no mesmo par de portas.
+
+Este projeto **não sobe Nginx, Certbot nem container próprio**. Publicar significa colocar o
+conteúdo de `out/` em `/opt/andrew-portfolio`, diretório montado read-only no Nginx e usado
+apenas pelo apex.
+
+O TLS é certificado de origem da Cloudflare, compartilhado entre os subdomínios e renovado fora
+deste repositório. Let's Encrypt e Certbot não têm papel aqui.
+
+Detalhes do ambiente, incluindo a config atual do Nginx e o mapa de domínios:
+[`infra/vps/README.md`](infra/vps/README.md).
+
 ## DNS
 
-Dois registros A apontando para o IP da VPS:
-
-| Tipo | Nome | Valor |
-|---|---|---|
-| A | `@` | IP da VPS |
-| A | `www` | IP da VPS |
-
-Confirme a propagação antes de emitir o certificado, senão o desafio ACME falha:
-
-```bash
-dig +short andrewfigueiredo.dev
-dig +short www.andrewfigueiredo.dev
-```
-
-## Preparar a VPS
-
-```bash
-# Docker e Docker Compose
-curl -fsSL https://get.docker.com | sh
-
-# Usuário de deploy sem sudo para o Docker
-sudo adduser --disabled-password --gecos "" deploy
-sudo usermod -aG docker deploy
-
-# Chave SSH: gere localmente e instale a pública na VPS
-# ssh-keygen -t ed25519 -C "deploy@andrewfigueiredo.dev" -f ~/.ssh/andrew_deploy
-sudo -u deploy mkdir -p /home/deploy/.ssh
-sudo chmod 700 /home/deploy/.ssh
-# cole a chave pública em /home/deploy/.ssh/authorized_keys
-sudo chmod 600 /home/deploy/.ssh/authorized_keys
-
-# Firewall
-sudo ufw allow OpenSSH && sudo ufw allow 80 && sudo ufw allow 443 && sudo ufw enable
-```
-
-Na VPS, crie o diretório da aplicação. O código-fonte nunca vai para lá — só três arquivos,
-porque a configuração do Nginx viaja dentro da imagem:
-
-```bash
-mkdir -p /home/deploy/andrew-landing/scripts && cd /home/deploy/andrew-landing
-# Copie do repositório (scp ou colando o conteúdo):
-#   docker-compose.yml
-#   .env.example
-#   scripts/init-letsencrypt.sh
-cp .env.example .env
-chmod +x scripts/init-letsencrypt.sh
-```
-
-## Certificado TLS
-
-```bash
-cd /home/deploy/andrew-landing
-./scripts/init-letsencrypt.sh              # staging: valida o fluxo sem gastar rate limit
-STAGING=0 ./scripts/init-letsencrypt.sh    # produção
-```
-
-Verifique a renovação automática:
-
-```bash
-docker compose run --rm certbot certbot renew --dry-run
-docker compose logs certbot --tail 30
-```
-
-O container `certbot` tenta renovar a cada 12h e o `web` recarrega o Nginx no mesmo intervalo,
-adotando o certificado novo sem downtime.
+Já configurado e em produção. Os registros do apex apontam para a VPS através da Cloudflare.
+Nada a fazer aqui — mexer no DNS afeta todos os subdomínios.
 
 ## Deploy
 
-O GitHub Actions faz todo o trabalho; a VPS só baixa a imagem pronta e nunca compila.
+Um `push` na `main` dispara build no GitHub Actions e sincroniza o resultado por `rsync`.
 
 ```
 git push origin main
   └─ Job 1  npm ci · lint · typecheck · test
-     Job 2  docker build (npm run build roda aqui) → push no GHCR
-     Job 3  ssh na VPS → docker compose pull && up -d → prune → health check
+     Job 2  npm run build → confere out/ → rsync para /opt/andrew-portfolio → health check
 ```
+
+O deploy escreve num único diretório. Nenhum container é criado, reiniciado ou parado, e
+nenhuma porta é tocada — por isso os outros domínios ficam fora de risco.
 
 Secrets em **Settings › Secrets and variables › Actions**:
 
 | Secret | Valor |
 |---|---|
 | `VPS_HOST` | IP da VPS |
-| `VPS_USER` | `deploy` |
+| `VPS_USER` | usuário com escrita em `/opt/andrew-portfolio` |
 | `VPS_SSH_KEY` | conteúdo da chave **privada** |
 | `VPS_PORT` | `22` |
-| `VPS_APP_PATH` | `/home/deploy/andrew-landing` |
-
-O pacote no GHCR é público, então a VPS baixa sem autenticação. Se for tornado privado, ela
-passa a exigir `docker login ghcr.io` com um token de leitura.
+| `VPS_APP_PATH` | `/opt/andrew-portfolio` |
 
 Dispare manualmente em **Actions › Deploy › Run workflow**.
+
+### Se a publicação parecer não ter surtido efeito
+
+O suspeito número um é **cache da Cloudflare**, não o rsync. Confirme o que está na VPS antes
+de investigar o pipeline:
+
+```bash
+ssh <user>@<host> 'ls -la /opt/andrew-portfolio | head'
+```
+
+### Publicar manualmente, se precisar
+
+```bash
+npm run build
+rsync -az --delete out/ <user>@<host>:/opt/andrew-portfolio/
+```
 
 ## Documentação de projeto
 

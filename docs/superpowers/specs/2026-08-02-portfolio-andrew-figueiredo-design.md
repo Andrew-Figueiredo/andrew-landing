@@ -119,7 +119,9 @@ public/
   cv-andrew-figueiredo.pdf # já adicionado; substituir quando o CV for revisado
   og-image.png            # 1200×630, gerada por scripts/make-og-image.mjs
 scripts/
-  og-template.html · make-og-image.mjs · init-letsencrypt.sh
+  og-template.html · make-og-image.mjs
+infra/vps/
+  README.md · apex-nginx-atual.conf · placeholder-atual.html   # ver adendo, seção 17
 ```
 
 Um arquivo por seção. Nenhuma string hardcoded em componente.
@@ -405,3 +407,30 @@ formulário com submit, analytics, tema escuro, Brotli, CSP por hash.
 `index.html` sai do topo do repositório. O histórico git preserva o conteúdo — anotar no
 README o SHA `74d877a` como ponto de recuperação. A Sonhai passa a ser um projeto próprio,
 com repositório e domínio próprios, fora do escopo desta spec.
+
+---
+
+## 17. Adendo de 2026-08-03 — a VPS não estava vazia
+
+As seções 11 (Infraestrutura) e 12 (CI/CD) foram escritas assumindo uma VPS dedicada. A
+inspeção do servidor mostrou o contrário, e **essas duas seções estão obsoletas**.
+
+O que se descobriu:
+
+- As portas 80 e 443 pertencem ao container `admin_corretor-nginx-1`, um Nginx compartilhado
+  que atende cinco hostnames, incluindo o apex `andrewfigueiredo.dev`.
+- O apex já servia uma tela de "portfólio em breve" como **arquivos estáticos** do diretório
+  `/opt/andrew-portfolio`, montado read-only no Nginx.
+- O TLS é certificado de origem da **Cloudflare**, compartilhado entre os subdomínios. Não é
+  Let's Encrypt.
+
+Subir o `docker-compose` desta spec teria falhado por conflito de porta — ou, no pior caso,
+derrubado `admin_corretor`, `n8n` e `evolution_go` junto.
+
+**Decisão do autor em 2026-08-03:** o deploy passa a ser `rsync` do `out/` para
+`/opt/andrew-portfolio`. Dockerfile, docker-compose, configuração de Nginx própria e o script
+do Certbot foram removidos do repositório. O ambiente real está documentado em
+`infra/vps/README.md`, com cópias da config do apex e do placeholder anterior.
+
+Restrição permanente: **este projeto é dono apenas do apex.** Nenhuma automação deste
+repositório pode criar, reiniciar ou parar containers, nem fazer bind em porta.

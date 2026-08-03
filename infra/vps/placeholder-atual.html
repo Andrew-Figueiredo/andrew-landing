@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Figueiredo — Portfólio em breve</title>
+  <meta name="description" content="Portfólio de Andrew Figueiredo — em construção. Em breve, projetos e trabalhos." />
+  <meta name="robots" content="noindex" />
+  <style>
+    :root {
+      --bg: #05110d;
+      --card: rgba(255, 255, 255, 0.04);
+      --stroke: rgba(255, 255, 255, 0.10);
+      --text: #eafff5;
+      --muted: #8fb3a6;
+      --accent: #2dd4bf;
+      --accent2: #34d399;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      background: radial-gradient(1200px 600px at 50% -10%, #0c2a22 0%, var(--bg) 55%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 24px;
+      overflow: hidden;
+    }
+    .glow {
+      position: fixed;
+      width: 520px; height: 520px;
+      filter: blur(90px);
+      opacity: 0.30;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .glow.a { background: var(--accent); top: -160px; left: -120px; }
+    .glow.b { background: var(--accent2); bottom: -180px; right: -120px; }
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 44px 40px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+    .winbar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+    .winbar i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .winbar i:nth-child(1) { background: #ff5f57; }
+    .winbar i:nth-child(2) { background: #febc2e; }
+    .winbar i:nth-child(3) { background: #28c840; }
+    .prompt { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+    .prompt .arrow { color: var(--accent); }
+    h1 {
+      font-size: clamp(28px, 6vw, 44px);
+      line-height: 1.1;
+      margin: 6px 0 16px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cursor {
+      display: inline-block;
+      width: 11px; height: 1.05em;
+      background: var(--accent);
+      margin-left: 4px;
+      vertical-align: text-bottom;
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    p.lead { color: var(--muted); font-size: 15px; line-height: 1.7; }
+    p.lead b { color: var(--text); font-weight: 600; }
+    .status {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--accent2);
+      border: 1px solid var(--stroke);
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent2);
+      box-shadow: 0 0 12px var(--accent2);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  </style>
+</head>
+<body>
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+
+  <main class="card">
+    <div class="winbar"><i></i><i></i><i></i></div>
+    <div class="prompt"><span class="arrow">~/portfolio $</span> deploy --soon</div>
+    <h1>Andrew Figueiredo<span class="cursor"></span></h1>
+    <p class="lead">
+      Estou construindo meu <b>portfólio</b> aqui — projetos, experimentos e os trabalhos
+      que venho desenvolvendo. Em breve no ar.
+    </p>
+    <div class="status"><span class="dot"></span> Em construção</div>
+  </main>
+</body>
+</html>

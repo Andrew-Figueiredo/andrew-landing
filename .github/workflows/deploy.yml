@@ -5,8 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
-env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/andrew-landing
+# O apex andrewfigueiredo.dev é servido como arquivos estáticos por um Nginx compartilhado
+# que já roda na VPS (container admin_corretor-nginx-1) e atende também outros domínios.
+# Este deploy escreve APENAS em ${{ secrets.VPS_APP_PATH }} (/opt/andrew-portfolio), que é
+# usado só pelo apex. Nenhum container é criado, reiniciado ou parado, e nenhuma porta é
+# tocada — os demais domínios não são afetados.
 
 jobs:
   ci:
@@ -23,59 +26,54 @@ jobs:
       - run: npm run typecheck
       - run: npm test
 
-  build:
-    name: Build e push da imagem
+  deploy:
+    name: Build e sincronizacao para a VPS
     needs: ci
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
-      - uses: docker/login-action@v3
+      - uses: actions/setup-node@v4
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ env.IMAGE }}:latest
-            ${{ env.IMAGE }}:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
 
-  deploy:
-    name: Deploy na VPS
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pull da imagem e restart na VPS
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            set -e
-            cd ${{ secrets.VPS_APP_PATH }}
-            docker compose pull
-            docker compose up -d
-            docker image prune -f
+      - name: Conferir o build antes de publicar
+        run: |
+          set -e
+          test -f out/index.html   || { echo "out/index.html ausente"; exit 1; }
+          test -f out/pt/index.html || { echo "out/pt/index.html ausente"; exit 1; }
+          test -f out/en/index.html || { echo "out/en/index.html ausente"; exit 1; }
+          echo "Build integro: raiz, /pt/ e /en/ presentes."
+
+      - name: Preparar chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "${{ secrets.VPS_PORT }}" -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Sincronizar out/ para o diretorio do apex
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_deploy -p ${{ secrets.VPS_PORT }}" \
+            out/ \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_APP_PATH }}/"
 
       - name: Health check
         run: |
-          for i in 1 2 3 4 5; do
-            if curl -fsS -o /dev/null https://andrewfigueiredo.dev/pt/; then
-              echo "Site respondendo."
+          for i in 1 2 3; do
+            if curl -fsS https://andrewfigueiredo.dev/pt/ | grep -q "Andrew Figueiredo"; then
+              echo "Site respondendo com o conteudo novo."
               exit 0
             fi
-            echo "Tentativa $i falhou; aguardando o container subir."
+            echo "Tentativa $i sem confirmacao; aguardando propagacao de cache."
             sleep 10
           done
-          echo "Health check falhou após 5 tentativas."
+          echo "Health check falhou. O site pode estar servindo versao em cache da Cloudflare."
           exit 1
+
+      - name: Limpar chave
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
