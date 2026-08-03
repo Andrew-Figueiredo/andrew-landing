@@ -4,75 +4,74 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Visão geral
 
-Landing page institucional one-page da **Sonhai** (agência de IA e software sob medida para PMEs).
-Site estático em **um único arquivo**: `index.html` (~880 linhas) contém HTML, `<style>` e `<script>` embutidos.
-Conteúdo todo em português (`lang="pt-BR"`).
+Portfólio pessoal de Andrew Figueiredo em `andrewfigueiredo.dev`. Next.js 15 (App Router) +
+TypeScript + Tailwind v4, bilíngue PT/EN, exportado como site estático e servido por Nginx em
+container. Sem backend, banco ou formulário com submit.
 
-Não há build, package.json, dependências npm, linter nem testes. As duas únicas
-dependências externas são Google Fonts (Plus Jakarta Sans + Inter) e nada mais —
-os ícones são SVG inline e o favicon é um data URI SVG no `<head>`.
+Spec de design: `docs/superpowers/specs/2026-08-02-portfolio-andrew-figueiredo-design.md`.
 
-## Desenvolvimento
-
-Abrir `index.html` direto no navegador já funciona. Para servir localmente:
+## Comandos
 
 ```bash
-python -m http.server 8000   # ou: npx serve .
+npm run dev        # http://localhost:3000/pt/
+npm run build      # gera out/
+npm run typecheck  # tsc --noEmit
+npm test           # vitest run
+npm test -- -t "nome do teste"   # um teste específico
+npm run lint
+npm run og         # regera public/og-image.png
 ```
 
-Deploy: copiar `index.html` para qualquer host estático (GitHub Pages, Vercel, Netlify, Nginx). Sem passo de build.
+## Arquitetura
 
-## Estrutura de `index.html`
+**Não existe `src/app/layout.tsx`.** Todas as rotas ficam sob `src/app/[lang]/`, e o layout desse
+segmento atua como root layout — é o que permite `<html lang>` correto por idioma.
+`generateStaticParams` emite `pt` e `en`, e `dynamicParams = false` fecha o resto.
 
-O arquivo é dividido por comentários-banner numerados. Ao navegar, procure por eles em vez de rolar o arquivo:
+**`output: 'export'` restringe o que é possível.** Sem middleware, sem rotas dinâmicas de
+servidor, sem otimização de imagem em runtime. `trailingSlash: true` e `images.unoptimized: true`
+são interdependentes com ele; mudar um quebra o deploy.
 
-- `<head>` — bloco `SEO + Open Graph`, favicon SVG inline, Google Fonts.
-- `<style>` — 14 seções numeradas, na ordem: `1. VARIÁVEIS DE TEMA`, `2. RESET + BASE`,
-  `3. BOTÕES`, `4. HEADER / NAV`, `5. HERO`, `6. PROBLEMA / VALOR`, `7. SERVIÇOS`,
-  `8. COMO FUNCIONA`, `9. POR QUE A SONHAI / DIFERENCIAIS`, `10. SOBRE`, `11. CONTATO`,
-  `12. RODAPÉ`, `13. MICROINTERAÇÕES`, `14. RESPONSIVO`.
-- `<body>` — `header#header`, e as seções `#hero`, `#valor`, `#servicos`, `#como-funciona`,
-  `#diferenciais`, `#sobre`, `#contato`, `footer`, botão flutuante `.wa-float`.
-- `<script>` — ano do rodapé, header com classe `scrolled`, menu mobile, IntersectionObserver
-  das animações, validação do formulário.
+**O redirect da raiz é `public/index.html`**, escrito à mão. É o único ponto do site que usa
+`localStorage`. O toggle de idioma na navbar é um `<Link>` real que troca a rota.
 
-Mantenha esse padrão de banners ao adicionar seções: o CSS de uma seção fica no bloco numerado
-correspondente, não junto ao markup.
+**Animação vive só em `src/components/Reveal.tsx`**, o único componente de motion marcado
+`'use client'`. `Projects.tsx` também é client, por causa do estado do filtro. Não espalhe
+`'use client'` além desses dois — as demais seções são Server Components.
+
+**Ícones de marca são SVG inline** em `src/components/icons/BrandIcons.tsx`. `lucide-react` v1
+removeu `Github` e `Linkedin`; os demais ícones vêm da lucide normalmente.
 
 ## Convenções
 
-**Tema.** Todas as cores, raios, sombras e fontes vêm de custom properties no `:root` (`--c-*`,
-`--radius*`, `--shadow*`, `--font-head`/`--font-body`, `--maxw`). Nunca hardcode cor ou fonte no CSS
-das seções — use ou adicione uma variável.
+**Fronteira `i18n/` vs `data/`.** `src/i18n/` guarda texto de interface (nav, botões, títulos de
+seção). `src/data/` guarda registros, e campos que variam por idioma usam `{ pt, en }` dentro do
+próprio registro. Nenhuma string hardcoded em componente.
 
-**Alternância de fundo.** Seções alternam branco e `--c-bg-soft` via a classe `section--soft`.
-Ao inserir uma seção nova, respeite a alternância com as vizinhas.
+**Paridade PT/EN é garantida pelo compilador.** `pt.ts` define `Dictionary` via `typeof`; `en.ts`
+é tipado com ele. Chave faltando quebra `npm run typecheck`, não o runtime. `pt.ts` **não** usa
+`as const` de propósito: isso produziria tipos literais e `en.ts` passaria a exigir as strings em
+português.
 
-**Animação de entrada.** Elementos com `.reveal` começam invisíveis e ganham `.in` via
-IntersectionObserver (`threshold: 0.12`). Escalone itens irmãos com `.d1`–`.d4` (delays de 80ms).
-Se um elemento novo precisa aparecer no scroll, basta a classe — o JS já observa tudo com `.reveal`.
-Existe fallback para navegadores sem IntersectionObserver e um `@media (prefers-reduced-motion: reduce)`
-que desliga as animações; preserve os dois.
+**Tokens de tema** ficam em `@theme` dentro de `src/app/globals.css`. Use as utilitárias
+(`text-accent`, `bg-bg-soft`, `border-line`, `font-head`, `font-mono`). Nunca hardcode cor ou
+fonte num componente.
 
-**Responsivo.** Breakpoints em 980px, 760px e 480px, todos no bloco `14. RESPONSIVO`.
+**Tom do conteúdo:** sóbrio e técnico. Proibido "apaixonado", "energia contagiante",
+"entusiasmado". Não inventar métricas — onde faltar número, deixar `// TODO: adicionar métrica`.
 
-**Ícones.** SVG inline com `stroke="currentColor"`, `stroke-width="2"`, `viewBox="0 0 24 24"` (estilo Feather).
-Não adicione bibliotecas de ícones.
+**Descrição de projeto diz qual problema foi resolvido**, não o que foi construído.
 
-## Placeholders a substituir
+**Keep Chat aparece em duas seções** com recortes deliberadamente distintos: `AiResearch` trata do
+conteúdo da pesquisa, `Experience` do vínculo e das datas. Não unifique os textos. Não descreva o
+projeto como sendo de segurança pública — o edital tem trechos de pré-requisito reaproveitados de
+outro edital; vale a descrição oficial do item 2.1.
 
-O site ainda tem dados fictícios. Ao mexer em contato, atenção a:
+**Invariantes de dados** estão em `src/data/data.test.ts`: distribuição por categoria, contagem de
+destaques, unicidade de id, e quais vínculos são atuais. Se um desses falhar depois de editar
+dados, confira a spec antes de alterar o teste.
 
-- Telefone/WhatsApp `5500000000000` — aparece em 4 lugares (bloco de contato, rodapé, botão flutuante).
-- E-mail `contato@sonhai.com.br` (bloco `DADOS DE CONTATO` e rodapé).
-- Redes sociais no rodapé — `href="#"` em Instagram, LinkedIn e afins.
-- `og:url` e o `og:image` comentado no `<head>`.
+## Pendências de conteúdo
 
-**Formulário de contato:** hoje só valida no front-end (nome, e-mail por regex, mensagem) e mostra
-confirmação visual — **não envia nada**. O ponto de integração é o bloco comentado `ENVIO` dentro do
-`submit` handler, onde já há um exemplo de `fetch`. Ao conectar um backend, substitua aquele bloco
-mantendo o `e.preventDefault()` e a validação acima.
-
-## Git
-
-Commits recentes usam prefixo `feat:` em português/inglês misto. Branch principal: `main`.
+Ver seção 14 da spec. Os nove projetos em `src/data/projects.ts` são seed marcado
+`// TODO: substituir`.
