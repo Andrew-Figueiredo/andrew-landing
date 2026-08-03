@@ -17,3 +17,6 @@ Thumbs.db
 # Ambiente
 .env
 .env.local
+
+# Superpowers (brainstorm/visual companion)
+.superpowers/
