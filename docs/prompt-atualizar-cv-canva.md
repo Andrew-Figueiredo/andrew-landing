@@ -78,14 +78,24 @@ Monitor Matemática Discreta (2 bullets), Monitor Cálculo II (2 bullets)
 ## O QUE PRECISA MUDAR, E POR QUÊ
 
 Estou me reposicionando. Hoje o documento me apresenta como analista de qualidade e cientista
-de dados. Quero que ele apresente três frentes de peso equivalente:
+de dados. Quero que ele apresente três frentes principais, de peso equivalente entre si, mais uma
+quarta complementar:
 
 1. Desenvolvimento de Sistemas — aplicações web, APIs, integrações
 2. Consultoria em IA — LLMs, machine learning aplicado, automação inteligente
 3. Automação e Bots — n8n, chatbots WhatsApp e Telegram, RPA
+4. Qualidade e Engenharia de Testes — automação de testes, BDD, CI/CD, análise estática de
+   código. **Peso deliberadamente menor que as três primeiras.**
 
-O eixo que une as três: construo o sistema, integro inteligência nele e automatizo a operação
-em volta. São camadas do mesmo trabalho, não serviços soltos.
+A quarta não é uma oferta em pé de igualdade com as outras: é o que fecha o ciclo delas.
+Construo o sistema, integro inteligência nele, automatizo a operação em volta — e sei garantir
+que aquilo se sustenta em produção. Poucos desenvolvedores conseguem afirmar essa última parte
+com lastro; eu consigo, e é isso que ela acrescenta.
+
+Regra prática: a qualidade deve aparecer, ter lastro nos bullets e ser buscável, mas nunca
+ocupar o mesmo espaço que as três primeiras nem vir antes delas. Onde faltar espaço, ela é a
+primeira a ceder.
+
 
 Meu título passa a ser: Especialista em Desenvolvimento de Sistemas | Consultoria em IA e
 Automação.
@@ -118,8 +128,8 @@ recente hoje é o Keep Chat.
 
 **As bolinhas são de 0 a 4.** Não proponha escala diferente nem valor fora dela.
 
-**A barra lateral já tem 13 hard skills e está cheia.** Adicionar as três frentes novas não
-cabe sem tirar coisa. Proponha uma lista final que caiba em 13 a 15 linhas, priorizando o
+**A barra lateral já tem 13 hard skills e está cheia.** Adicionar as frentes que faltam não cabe
+sem tirar coisa. Proponha uma lista final que caiba em 13 a 15 linhas, priorizando o
 posicionamento, e diga o que sai. Competências que existem mas não entram na lateral podem
 viver nos bullets de experiência.
 
@@ -211,7 +221,8 @@ Cheque item a item:
 - Nenhuma palavra da lista proibida sobrou, e a menção à idade saiu.
 - ENACOM está com Out/2024, agrupada, com os três cargos em progressão.
 - O Keep Chat entrou como bloco novo, no topo da experiência.
-- As três frentes aparecem no perfil e têm lastro nos bullets.
+- As três frentes principais aparecem no perfil e têm lastro nos bullets; a qualidade aparece
+  como quarta, com menos espaço.
 - O site pessoal aponta para andrewfigueiredo.dev.
 - Nenhum número inventado; lacunas marcadas.
 - Cada bloco tem contagem de caracteres e aviso quando ficou maior que o atual.

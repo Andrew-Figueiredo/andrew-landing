@@ -32,14 +32,23 @@ lado de cada um. Não me entregue análise, diagnóstico ou lista de sugestões:
 Meu título profissional é: Especialista em Desenvolvimento de Sistemas | Consultoria em IA e
 Automação.
 
-Atuo em três frentes, com peso equivalente:
+Atuo em três frentes principais, de peso equivalente entre si, mais uma quarta
+complementar:
 1. Desenvolvimento de Sistemas — aplicações web, APIs, integrações
 2. Consultoria em IA — LLMs, machine learning aplicado, automação inteligente
 3. Automação e Bots — n8n, chatbots WhatsApp e Telegram, RPA
+4. Qualidade e Engenharia de Testes — automação de testes, BDD, CI/CD, análise estática de
+   código. **Peso deliberadamente menor que as três primeiras.**
 
-O eixo que une as três, e que precisa ficar explícito no Headline e no Sobre: eu construo o
-sistema, integro inteligência nele e automatizo a operação em volta. São camadas do mesmo
-trabalho, não serviços soltos.
+A quarta não é uma oferta em pé de igualdade com as outras: é o que fecha o ciclo delas.
+Construo o sistema, integro inteligência nele, automatizo a operação em volta — e sei garantir
+que aquilo se sustenta em produção. Poucos desenvolvedores conseguem afirmar essa última parte
+com lastro; eu consigo, e é isso que ela acrescenta.
+
+Regra prática: a qualidade deve aparecer, ter lastro nos bullets e ser buscável, mas nunca
+ocupar o mesmo espaço que as três primeiras nem vir antes delas. Onde faltar espaço, ela é a
+primeira a ceder.
+
 
 ## O LINKEDIN É UM MOTOR DE BUSCA — trate como tal
 
@@ -71,14 +80,15 @@ Os limites abaixo eram os vigentes quando este prompt foi escrito. Respeite-os; 
 LinkedIn mudou algum, use o valor atual e me avise.
 
 1. **Headline** — até 220 caracteres. É o campo de maior alavanca: aparece na busca, nos
-   convites e em cada comentário meu. Precisa comunicar as três frentes sem virar lista de
+   convites e em cada comentário meu. Precisa comunicar as três frentes principais sem virar
+   lista de
    cargos. Entregue **três variações** com abordagens distintas e diga em uma linha o que muda
    entre elas.
 
 2. **Sobre** — até 2.600 caracteres, primeira pessoa. Estrutura sugerida: abre com o que eu
    faço e para quem; desenvolve a narrativa de origem (entrei pela qualidade e automação, e isso
    me deu leitura completa de como um sistema é construído, quebra e se sustenta); apresenta as
-   três frentes; fecha com formação e pesquisa em IA. Os dois primeiros períodos são os únicos
+   três frentes principais e a qualidade como fecho; termina com formação e pesquisa em IA. Os dois primeiros períodos são os únicos
    visíveis antes do "ver mais" — eles precisam funcionar sozinhos.
 
 3. **Descrição de cada experiência** — até 2.000 caracteres cada. Prosa curta de contexto
@@ -95,6 +105,10 @@ LinkedIn mudou algum, use o valor atual e me avise.
    mudar.
 
 ## COMO TRATAR MINHA EXPERIÊNCIA EM QUALIDADE DE SOFTWARE
+
+**Escopo atualizado:** a qualidade também é uma frente que eu ofereço — a quarta da lista
+acima. O que ela não é: minha identidade nem meu carro-chefe. Ela entra como capacidade
+declarada e com lastro, sempre depois das três primeiras e com menos espaço.
 
 Ela é parte relevante da trajetória, mas **não é a minha identidade profissional**. Ela prova
 domínio de código, APIs, bancos, arquitetura, CI/CD e visão de ciclo completo de entrega.
@@ -170,14 +184,15 @@ Não tenho link público do projeto por enquanto. Se precisar referenciar, use o
 3. IA & Machine Learning — LLMs, treinamento de modelos, ML supervisionado e não supervisionado,
    redes neurais, scikit-learn, PySpark, MLOps, avaliação de modelos, Jupyter, R
 4. Automação & Bots — n8n, chatbots WhatsApp e Telegram, Power Automate, RPA
-5. Dados & BI — Power BI, dashboards, modelagem e análise de dados, Knime Analytics
-6. Infra & DevOps — Docker, Nginx, GitHub Actions, Linux/VPS, CI/CD
-7. Qualidade & Engenharia de Testes — Playwright, Pytest, Pytest-BDD, Cypress, Selenium,
+5. Qualidade & Engenharia de Testes — Playwright, Pytest, Pytest-BDD, Cypress, Selenium,
    Azure DevOps, SonarQube, BDD, testes de API e performance
+6. Dados & BI — Power BI, dashboards, modelagem e análise de dados, Knime Analytics
+7. Infra & DevOps — Docker, Nginx, GitHub Actions, Linux/VPS, CI/CD
 8. Metodologias — SCRUM, Ágil, Design Patterns, Clean Code
 
-Qualidade aparece em sétimo de propósito. Não a promova para cima só porque tenho mais anos
-nela — a ordem existe para comunicar onde eu quero atuar, não onde eu estive.
+Qualidade aparece em quinto de propósito: logo depois das três frentes principais e antes dos
+grupos de apoio. Não a promova acima das três primeiras só porque tenho mais anos nela — a
+ordem comunica onde eu quero atuar, não apenas onde eu estive.
 
 ## O QUE JA EXISTE NO DOCUMENTO ATUAL — e o que fazer com cada coisa
 
@@ -185,7 +200,7 @@ Este trecho foi levantado lendo o CV real. Use como inventario: nada aqui precis
 redescoberto, e nada aqui pode ser inventado alem do que esta escrito.
 
 **Titulo atual:** "Especialista em Qualidade de Software / Cientista de Dados".
-Substituir pelo posicionamento das tres frentes. Este e o ponto central da reescrita.
+Substituir pelo posicionamento das tres frentes principais mais a quarta. Este e o ponto central da reescrita.
 
 **Perfil atual:** contem "apaixonado pela intersecao", "trago uma energia contagiante" e
 "Estou entusiasmado". Reescrever inteiro. As regras de tom acima existem por causa deste texto.
@@ -204,7 +219,7 @@ errado. O vinculo encerrou em Out/2024, conforme a lista de datas verificadas. C
 - LLMs
 
 Sem esses blocos, o documento descreve um analista de qualidade e cientista de dados — nao a
-pessoa das tres frentes.
+pessoa das tres frentes principais mais a quarta.
 
 ## DADOS ADICIONAIS VERIFICADOS NO DOCUMENTO ATUAL
 

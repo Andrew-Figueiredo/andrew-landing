@@ -29,16 +29,32 @@ relatório, uma análise ou uma lista de sugestões — entregue o documento.
 
 Título profissional: Especialista em Desenvolvimento de Sistemas | Consultoria em IA e Automação
 
-Atuo em três frentes de peso equivalente:
+Atuo em três frentes principais, de peso equivalente entre si, mais uma quarta
+complementar:
 1. Desenvolvimento de Sistemas — aplicações web, APIs, integrações entre sistemas
 2. Consultoria em IA — LLMs, machine learning aplicado, automação inteligente
 3. Automação e Bots — n8n, chatbots para WhatsApp e Telegram, RPA
+4. Qualidade e Engenharia de Testes — automação de testes, BDD, CI/CD, análise estática de
+   código. **Peso deliberadamente menor que as três primeiras.**
+
+A quarta não é uma oferta em pé de igualdade com as outras: é o que fecha o ciclo delas.
+Construo o sistema, integro inteligência nele, automatizo a operação em volta — e sei garantir
+que aquilo se sustenta em produção. Poucos desenvolvedores conseguem afirmar essa última parte
+com lastro; eu consigo, e é isso que ela acrescenta.
+
+Regra prática: a qualidade deve aparecer, ter lastro nos bullets e ser buscável, mas nunca
+ocupar o mesmo espaço que as três primeiras nem vir antes delas. Onde faltar espaço, ela é a
+primeira a ceder.
 
 O eixo que une as três: eu construo o sistema, integro inteligência nele e automatizo a
 operação em volta. São camadas do mesmo trabalho, não serviços soltos. O resumo profissional
 no topo do CV precisa deixar isso explícito.
 
 ## COMO TRATAR MINHA EXPERIÊNCIA EM QUALIDADE DE SOFTWARE
+
+**Escopo atualizado:** a qualidade também é uma frente que eu ofereço — a quarta da lista
+acima. O que ela não é: minha identidade nem meu carro-chefe. Ela entra como capacidade
+declarada e com lastro, sempre depois das três primeiras e com menos espaço.
 
 Boa parte da minha trajetória tem títulos de Analista de Qualidade de Software. Isso é parte
 relevante da história, mas NÃO é a identidade do currículo.
@@ -127,10 +143,10 @@ Deixe isso perceptível sem precisar afirmar de forma direta.
    PySpark, MLOps, avaliação de modelos, Jupyter, Python, R
 4. Automação & Bots — n8n, chatbots WhatsApp, chatbots Telegram, Power Automate, integrações
    entre sistemas, RPA
-5. Dados & BI — Power BI, dashboards, modelagem de dados, análise de dados, Knime Analytics
-6. Infra & DevOps — Docker, Nginx, GitHub Actions, Linux/VPS, CI/CD
-7. Qualidade & Engenharia de Testes — Playwright, Pytest, Pytest-BDD, Cypress, Selenium,
+5. Qualidade & Engenharia de Testes — Playwright, Pytest, Pytest-BDD, Cypress, Selenium,
    Azure DevOps, SonarQube, BDD, testes de API, testes de performance
+6. Dados & BI — Power BI, dashboards, modelagem de dados, análise de dados, Knime Analytics
+7. Infra & DevOps — Docker, Nginx, GitHub Actions, Linux/VPS, CI/CD
 8. Metodologias — SCRUM, Ágil, Design Patterns, Clean Code
 
 Sem barras de progresso, sem percentuais, sem níveis do tipo "avançado" ou "intermediário".
@@ -138,7 +154,8 @@ Sem barras de progresso, sem percentuais, sem níveis do tipo "avançado" ou "in
 ## ESTRUTURA ESPERADA DO CURRÍCULO
 
 1. Cabeçalho — nome, título profissional, contatos (use os que estão no CV anexado)
-2. Resumo profissional — 3 a 4 linhas articulando as três frentes
+2. Resumo profissional — 3 a 4 linhas articulando as três frentes principais, com a
+   qualidade como fecho do ciclo
 3. Experiência profissional — ordem cronológica reversa, com ENACOM agrupada
 4. Formação acadêmica
 5. Skills agrupadas na ordem acima
@@ -152,7 +169,7 @@ Este trecho foi levantado lendo o CV real. Use como inventario: nada aqui precis
 redescoberto, e nada aqui pode ser inventado alem do que esta escrito.
 
 **Titulo atual:** "Especialista em Qualidade de Software / Cientista de Dados".
-Substituir pelo posicionamento das tres frentes. Este e o ponto central da reescrita.
+Substituir pelo posicionamento das tres frentes principais mais a quarta. Este e o ponto central da reescrita.
 
 **Perfil atual:** contem "apaixonado pela intersecao", "trago uma energia contagiante" e
 "Estou entusiasmado". Reescrever inteiro. As regras de tom acima existem por causa deste texto.
@@ -171,7 +188,7 @@ errado. O vinculo encerrou em Out/2024, conforme a lista de datas verificadas. C
 - LLMs
 
 Sem esses blocos, o documento descreve um analista de qualidade e cientista de dados — nao a
-pessoa das tres frentes.
+pessoa das tres frentes principais mais a quarta.
 
 ## DADOS ADICIONAIS VERIFICADOS NO DOCUMENTO ATUAL
 
