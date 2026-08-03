@@ -95,9 +95,9 @@ src/
   i18n/       pt.ts · en.ts · index.ts
   lib/        utils.ts
 public/
-  andrew-figueiredo.png   # já adicionado; converter para WebP no build
+  andrew-figueiredo.jpg   # já adicionado (640×640, 50 KB); converter para WebP no build
   index.html              # redirect de raiz por preferência de idioma
-  cv-andrew-figueiredo.pdf
+  cv-andrew-figueiredo.pdf # já adicionado; substituir quando o CV for revisado
   og-image.png            # 1200×630
 ```
 
@@ -333,7 +333,18 @@ de produção.
   `docker compose pull && docker compose up -d`, `docker image prune -f`, health check final
   com `curl -f https://andrewfigueiredo.dev`.
 
-A VPS nunca compila. Secrets: `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`, `VPS_PORT`, `VPS_APP_PATH`.
+A VPS nunca vê o código-fonte: recebe uma imagem com o site já compilado e o Nginx
+configurado, e `git pull` na VPS deixa de existir no processo. Se o build quebrar, ele quebra
+no Actions e o site em produção segue intacto.
+
+**Aprovado pelo autor em 2026-08-02.**
+
+**Visibilidade do pacote no GHCR:** público. A VPS baixa a imagem sem autenticação, evitando
+mais um segredo para administrar e rotacionar. O site é público de qualquer forma. Se um dia
+for necessário torná-lo privado, a VPS passa a exigir `docker login ghcr.io` com um token de
+leitura, que entra como secret adicional.
+
+Secrets: `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`, `VPS_PORT`, `VPS_APP_PATH`.
 Nenhum IP, usuário ou chave versionado. `.env` + `.env.example`.
 
 ## 13. Documentação (README.md)
@@ -356,8 +367,8 @@ Bloqueiam o conteúdo final, não a construção do site. O site sobe com marcad
       Revisitar quando houver site, repositório ou material de curso publicado
 - [ ] Nove projetos reais substituindo o seed
 - [ ] `og-image.png` (1200×630)
-- [ ] CV em PDF para `public/cv-andrew-figueiredo.pdf` (existe `CV Andrew - PT BR (1).pdf`
-      não versionado na raiz); decidir se haverá versão EN
+- [x] CV em `public/cv-andrew-figueiredo.pdf` (cópia do PT-BR atual). Substituir pela versão
+      revisada; decidir se haverá versão EN
 - [ ] Métricas nos bullets de experiência, onde existirem
 
 ## 15. Fora de escopo
