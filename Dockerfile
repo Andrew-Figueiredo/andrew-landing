@@ -17,6 +17,7 @@ RUN find out -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name
 # ---- runtime ----
 FROM nginx:1.27-alpine
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx/security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=builder /app/out /usr/share/nginx/html
 
 EXPOSE 80
