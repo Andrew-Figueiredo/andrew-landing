@@ -74,8 +74,26 @@ liderança técnica, pesquisa com fomento público) em vez de depender dos proje
 
 ## 4. Stack
 
-Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · shadcn/ui (apenas `button` e `badge`)
-· Framer Motion · lucide-react. Sem backend, sem banco, sem formulário com submit.
+Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion · lucide-react ·
+`clsx` + `tailwind-merge` (helper `cn()`). Desenvolvimento: Vitest, Playwright.
+Sem backend, sem banco, sem formulário com submit.
+
+**shadcn/ui não será instalado** (revisão de 2026-08-02, aprovada pelo autor). O site usa dois
+estilos de botão e um chip de texto; instalar shadcn traria `components.json`,
+`class-variance-authority` e o fluxo de `npx shadcn add` para gerar componentes mais longos que
+o markup direto. O helper `cn()` fica pronto caso componentes mais complexos — modal, dropdown,
+tabs — passem a ser necessários; nesse momento vale instalar.
+
+### Verificação
+
+A spec original não previa testes. Decisão da mesma revisão: entra uma camada mínima, cobrindo
+só o que o TypeScript não alcança.
+
+- `npm run typecheck` — já garante a paridade dos dicionários PT/EN por tipagem
+- `npm test` (Vitest) — invariantes dos dados: distribuição de projetos por categoria, contagem
+  de destaques, unicidade de id, quais vínculos são atuais, agrupamento dos cargos da ENACOM
+- `npm run lint` e `npm run build`
+- Playwright entra como devDependency apenas para gerar a OG image a partir de um template HTML
 
 ## 5. Estrutura de arquivos
 
@@ -89,16 +107,19 @@ src/
   components/
     layout/   Navbar.tsx · Footer.tsx · LanguageToggle.tsx
     sections/ Hero · About · Services · Projects · Process · Skills · AiResearch · Experience · Contact
-    ui/       button.tsx · badge.tsx (shadcn)
+    ProjectCard.tsx · SectionHeading.tsx
     Reveal.tsx          # único 'use client' de animação
   data/       profile.ts · services.ts · process.ts · skills.ts · education.ts · experience.ts · projects.ts
+              types.ts · data.test.ts
   i18n/       pt.ts · en.ts · index.ts
   lib/        utils.ts
 public/
   andrew-figueiredo.jpg   # já adicionado (640×640, 50 KB); converter para WebP no build
   index.html              # redirect de raiz por preferência de idioma
   cv-andrew-figueiredo.pdf # já adicionado; substituir quando o CV for revisado
-  og-image.png            # 1200×630
+  og-image.png            # 1200×630, gerada por scripts/make-og-image.mjs
+scripts/
+  og-template.html · make-og-image.mjs · init-letsencrypt.sh
 ```
 
 Um arquivo por seção. Nenhuma string hardcoded em componente.
@@ -366,7 +387,9 @@ Bloqueiam o conteúdo final, não a construção do site. O site sobe com marcad
 - [x] Keep Chat não tem artefato público por enquanto — usar o link do edital como referência.
       Revisitar quando houver site, repositório ou material de curso publicado
 - [ ] Nove projetos reais substituindo o seed
-- [ ] `og-image.png` (1200×630)
+- [x] `og-image.png` (1200×630) deixa de ser pendência de conteúdo: é gerada de um template
+      HTML por `npm run og`. O metadata a referencia, e imagem referenciada e ausente quebraria
+      o preview de todo link compartilhado
 - [x] CV em `public/cv-andrew-figueiredo.pdf` (cópia do PT-BR atual). Substituir pela versão
       revisada; decidir se haverá versão EN
 - [ ] Métricas nos bullets de experiência, onde existirem

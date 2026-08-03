@@ -28,8 +28,8 @@
 
 ## Desvios conscientes da spec
 
-Três pontos onde este plano diverge do documento de design. Precisam do aval do autor antes
-da execução.
+**Os três foram aprovados pelo autor em 2026-08-02 e já estão refletidos na spec.** Ficam
+registrados aqui para que a razão de cada um continue legível depois.
 
 1. **shadcn/ui não é instalado.** A spec previa `button` e `badge`. O site usa exatamente dois
    estilos de botão e um chip de texto, todos resolvidos com classes utilitárias em poucas
