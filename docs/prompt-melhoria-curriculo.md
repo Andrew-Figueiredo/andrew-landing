@@ -146,6 +146,78 @@ Sem barras de progresso, sem percentuais, sem níveis do tipo "avançado" ou "in
 Se você julgar que outra ordem serve melhor ao posicionamento, proponha a mudança e explique
 em uma linha — mas entregue o currículo montado de todo jeito.
 
+## O QUE JA EXISTE NO DOCUMENTO ATUAL — e o que fazer com cada coisa
+
+Este trecho foi levantado lendo o CV real. Use como inventario: nada aqui precisa ser
+redescoberto, e nada aqui pode ser inventado alem do que esta escrito.
+
+**Titulo atual:** "Especialista em Qualidade de Software / Cientista de Dados".
+Substituir pelo posicionamento das tres frentes. Este e o ponto central da reescrita.
+
+**Perfil atual:** contem "apaixonado pela intersecao", "trago uma energia contagiante" e
+"Estou entusiasmado". Reescrever inteiro. As regras de tom acima existem por causa deste texto.
+
+**Idade:** o texto atual informa "aos 25 anos". Remover — idade nao acrescenta nada e convida
+vies. Nao substitua por "X anos de experiencia" inventado; use apenas o que as datas sustentam.
+
+**Data desatualizada:** o documento traz ENACOM Analista V como "Fev 2023 - Today". Esta
+errado. O vinculo encerrou em Out/2024, conforme a lista de datas verificadas. Corrija.
+
+**Ausente do documento e que precisa entrar:**
+- Projeto Keep Chat (comecou depois da ultima atualizacao)
+- Toda a frente de Desenvolvimento de Sistemas: React, Next.js, TypeScript, Node.js, APIs REST
+- Toda a frente de Automacao e Bots: n8n, chatbots WhatsApp e Telegram, RPA
+- Infra e DevOps: Docker, Nginx, GitHub Actions, Linux/VPS, CI/CD
+- LLMs
+
+Sem esses blocos, o documento descreve um analista de qualidade e cientista de dados — nao a
+pessoa das tres frentes.
+
+## DADOS ADICIONAIS VERIFICADOS NO DOCUMENTO ATUAL
+
+Use apenas se servirem ao posicionamento. Nao force todos.
+
+**Contato:** andrewdw18@gmail.com · +55 (96) 98102-9283 · linkedin.com/in/andrew-figueiredo ·
+github.com/Andrew-Figueiredo
+O site pessoal listado hoje e um endereco do Canva (andrew-oliveira.my.canva.site). Substituir
+por andrewfigueiredo.dev.
+
+**Ferramentas que aparecem no documento e nao estavam na lista de skills:**
+- Orange Testing — automacao de testes web, usada na ENACOM
+- Allure Report — dashboards de testes automatizados, usado na CODATA
+- Java — implementacao em calculo numerico, na graduacao
+- C/C++, R, SQL
+
+**Distribuicao de linguagens declarada:** Python 44,4% · JavaScript 22,2% · SQL 14,8% ·
+R 14,8% · C/C++ 3,7%. Isso e autodeclarado, nao medido. Nao apresente como metrica de mercado.
+
+**Tempo por competencia, autodeclarado:** Python +5 anos, Jupyter +5, JavaScript +5, Automacao
+de Tarefas +5, Selenium +3, Casos de Teste +3, Metodologia Agil +2, Analise de Dados +2,
+Dashboards +2, Power BI +2, Testes de Usabilidade +2, Planejamento de Teste +2, Cypress +1.
+
+**Soft skills listadas:** adaptabilidade, comunicacao, inteligencia emocional, multitarefa.
+Se mantiver alguma, ancore em evidencia concreta — lideranca tecnica de equipe e atuacao junto
+ao cliente em operacao assistida sustentam comunicacao e adaptabilidade. Lista solta de soft
+skill sem lastro e ruido.
+
+**Detalhamento do mestrado que estava no documento e nao na lista resumida:** arquitetura e
+modelagem de sistemas distribuidos; implementacao de solucoes escalaveis com foco em eficiencia
+e desempenho; tecnicas de integracao e interoperabilidade entre sistemas; design patterns;
+otimizacao de processos de desenvolvimento com ferramentas DevOps; gerenciamento de requisitos
+e qualidade de software. Isso sustenta a frente de Desenvolvimento, nao so a de IA — aproveite.
+
+**Detalhes de experiencia presentes no documento:**
+- CODATA: elaboracao de planos de teste, execucao de testes manuais, operacao assistida com
+  cliente, dashboards de bugs e tarefas, SCRUM.
+- ENACOM Analista V: dashboards de bugs e tarefas, SCRUM, automacao web com Orange Testing.
+- ENACOM Analista III: testes de usabilidade, Azure DevOps, Test Plan.
+- ENACOM Estagio/I: priorizacao de automacao pelas telas mais usadas, testes de API REST,
+  MongoDB, tecnicas BDD.
+- Graduacao: algoritmo SIMPLEX em pesquisa operacional; calculo numerico em Python e Java.
+
+**Monitorias na UFPB, com datas:** Matematica Discreta (Fev/2017 – Jun/2018) e Calculo II
+(Jul/2018 – Jun/2019). Condense em uma linha; nao merecem bloco proprio.
+
 ## ANTES DE ENTREGAR
 
 Cheque item a item:
