@@ -61,3 +61,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Arquivo temporario de secrets — NUNCA versionar
+/SECRETS-GITHUB.md
