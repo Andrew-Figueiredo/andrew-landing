@@ -23,8 +23,22 @@ Três frentes com peso equivalente:
 2. Consultoria em IA — LLMs, machine learning aplicado, automação inteligente
 3. Automação e Bots — n8n, chatbots WhatsApp e Telegram, RPA
 
-O eixo que une as três: ele constrói o sistema, integra inteligência nele e automatiza a
-operação em volta. São camadas do mesmo trabalho. Hero e Sobre devem tornar isso explícito.
+E uma quarta frente **de peso deliberadamente menor** (decisão do autor em 2026-08-03):
+
+4. Qualidade e Engenharia de Testes — testes automatizados, BDD, CI/CD, análise estática
+
+O eixo que une tudo: ele constrói o sistema, integra inteligência nele, automatiza a operação em
+volta — e sabe garantir que aquilo se sustenta em produção. São camadas do mesmo trabalho. Hero
+e Sobre devem tornar isso explícito.
+
+A quarta frente não é uma oferta em pé de igualdade: é o fecho do ciclo das outras três. Poucos
+desenvolvedores conseguem afirmar essa última parte com lastro, e é isso que ela acrescenta em
+vez de diluir. Consequências de implementação, travadas por teste em `src/data/data.test.ts`:
+
+- O Hero renderiza apenas as frentes `weight: 'primary'` — a qualidade não disputa a primeira dobra.
+- A seção de Serviços dá à qualidade um bloco próprio de largura total abaixo do grid de três,
+  com os itens em linha. Um quarto card daria a ela o mesmo peso visual das principais.
+- Em Skills ela ocupa a quinta posição: depois das quatro frentes, antes dos grupos de apoio.
 
 A experiência em Qualidade de Software é parte da trajetória, não a identidade do site.
 Os títulos de cargo reais são preservados; os bullets descrevem o trabalho de engenharia

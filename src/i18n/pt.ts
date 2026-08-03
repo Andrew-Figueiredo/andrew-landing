@@ -35,6 +35,7 @@ export const pt = {
   sections: {
     aboutTitle: 'Sobre',
     servicesTitle: 'Serviços',
+    servicesClosing: 'E o que fecha o ciclo',
     projectsTitle: 'Projetos',
     processTitle: 'Como eu trabalho',
     skillsTitle: 'Skills',

@@ -1,6 +1,31 @@
 import { describe, expect, it } from 'vitest';
 import { projects } from './projects';
 import { experience } from './experience';
+import { services } from './services';
+import { skillGroups } from './skills';
+
+describe('posicionamento', () => {
+  it('mantém três frentes principais e a qualidade como única secundária', () => {
+    expect(services.filter((s) => s.weight === 'primary').map((s) => s.id)).toEqual([
+      'dev',
+      'ai',
+      'automation',
+    ]);
+    expect(services.filter((s) => s.weight === 'secondary').map((s) => s.id)).toEqual(['quality']);
+  });
+
+  it('põe a qualidade depois das três frentes na ordem das skills', () => {
+    const ordem = skillGroups.map((g) => g.id);
+    const qualidade = ordem.indexOf('quality');
+    for (const frente of ['web', 'backend', 'ai', 'automation']) {
+      expect(qualidade).toBeGreaterThan(ordem.indexOf(frente));
+    }
+    // E antes dos grupos de apoio, senão fica enterrada.
+    for (const apoio of ['data', 'infra', 'methods']) {
+      expect(qualidade).toBeLessThan(ordem.indexOf(apoio));
+    }
+  });
+});
 
 describe('projects', () => {
   it('mantém a distribuição prevista de 2 IA, 4 fullstack e 3 landing', () => {

@@ -1,6 +1,9 @@
 import type { SkillGroup } from './types';
 
 // A ordem comunica o posicionamento e não deve ser alterada sem revisar a spec.
+// Os quatro primeiros grupos são as frentes de atuação (web e backend formam a de
+// Desenvolvimento). Qualidade vem em quinto: declarada, mas depois das três principais.
+// Os três últimos são apoio.
 export const skillGroups: SkillGroup[] = [
   {
     id: 'web',
@@ -46,16 +49,6 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    id: 'data',
-    title: { pt: 'Dados & BI', en: 'Data & BI' },
-    skills: ['Power BI', 'Dashboards', 'Modelagem de dados', 'Análise de dados', 'Knime Analytics'],
-  },
-  {
-    id: 'infra',
-    title: { pt: 'Infra & DevOps', en: 'Infra & DevOps' },
-    skills: ['Docker', 'Nginx', 'GitHub Actions', 'Linux/VPS', 'CI/CD'],
-  },
-  {
     id: 'quality',
     title: { pt: 'Qualidade & Engenharia de Testes', en: 'Quality & Test Engineering' },
     skills: [
@@ -70,6 +63,16 @@ export const skillGroups: SkillGroup[] = [
       'Testes de API',
       'Testes de performance',
     ],
+  },
+  {
+    id: 'data',
+    title: { pt: 'Dados & BI', en: 'Data & BI' },
+    skills: ['Power BI', 'Dashboards', 'Modelagem de dados', 'Análise de dados', 'Knime Analytics'],
+  },
+  {
+    id: 'infra',
+    title: { pt: 'Infra & DevOps', en: 'Infra & DevOps' },
+    skills: ['Docker', 'Nginx', 'GitHub Actions', 'Linux/VPS', 'CI/CD'],
   },
   {
     id: 'methods',

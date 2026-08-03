@@ -75,6 +75,12 @@ fonte num componente.
 
 **Descrição de projeto diz qual problema foi resolvido**, não o que foi construído.
 
+**A qualidade é a quarta frente, com peso menor de propósito.** Ela tem `weight: 'secondary'`
+em `services.ts`; o Hero renderiza só as `primary`, e a seção de Serviços lhe dá um bloco
+próprio abaixo do grid, não um quarto card. Em Skills fica em quinto: depois das frentes,
+antes dos grupos de apoio. Isso está travado por teste — promover a qualidade a card igual ou
+ao Hero quebra `data.test.ts`, e é intencional.
+
 **Keep Chat aparece em duas seções** com recortes deliberadamente distintos: `AiResearch` trata do
 conteúdo da pesquisa, `Experience` do vínculo e das datas. Não unifique os textos. Não descreva o
 projeto como sendo de segurança pública — o edital tem trechos de pré-requisito reaproveitados de

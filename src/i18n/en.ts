@@ -35,6 +35,7 @@ export const en: Dictionary = {
   sections: {
     aboutTitle: 'About',
     servicesTitle: 'Services',
+    servicesClosing: 'And what closes the cycle',
     projectsTitle: 'Projects',
     processTitle: 'How I work',
     skillsTitle: 'Skills',

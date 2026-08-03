@@ -60,19 +60,28 @@ export function Hero({ lang }: { lang: Locale }) {
       </Reveal>
 
       <Reveal delay={0.08}>
+        {/* Só as três frentes principais. A qualidade tem peso menor e vive na seção
+            de Serviços, num bloco próprio — não disputa a primeira dobra. */}
         <div className="mt-10 grid gap-px border-t border-line sm:grid-cols-3">
-          {services.map((s, i) => (
-            <div key={s.id} className={i > 0 ? 'pt-5 sm:border-l sm:border-line sm:pl-5' : 'pt-5 sm:pr-5'}>
-              <p className="font-mono text-[0.65rem] text-accent">{String(i + 1).padStart(2, '0')}</p>
-              <h2 className="font-head mt-1 text-sm font-semibold">{s.title[lang]}</h2>
-              <p className="mt-1 text-sm leading-relaxed text-muted">
-                {s.items
-                  .slice(0, 2)
-                  .map((it) => it[lang])
-                  .join(' · ')}
-              </p>
-            </div>
-          ))}
+          {services
+            .filter((s) => s.weight === 'primary')
+            .map((s, i) => (
+              <div
+                key={s.id}
+                className={i > 0 ? 'pt-5 sm:border-l sm:border-line sm:pl-5' : 'pt-5 sm:pr-5'}
+              >
+                <p className="font-mono text-[0.65rem] text-accent">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <h2 className="font-head mt-1 text-sm font-semibold">{s.title[lang]}</h2>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {s.items
+                    .slice(0, 2)
+                    .map((it) => it[lang])
+                    .join(' · ')}
+                </p>
+              </div>
+            ))}
         </div>
       </Reveal>
     </section>
