@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Andrew Figueiredo</title>
+<link rel="canonical" href="https://andrewfigueiredo.dev/pt/">
+<meta name="robots" content="noindex">
+<script>
+  // Única finalidade do localStorage no site: lembrar o idioma na entrada pela raiz.
+  // O toggle da navbar é um <Link> real e troca a URL; ele nunca depende disto.
+  (function () {
+    var lang = 'pt';
+    try {
+      if (localStorage.getItem('lang') === 'en') lang = 'en';
+    } catch (e) {
+      // localStorage bloqueado (modo privado, cookies desativados): segue no padrão.
+    }
+    location.replace('/' + lang + '/');
+  })();
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/pt/"></noscript>
+</head>
+<body>
+<p>Redirecionando para <a href="/pt/">andrewfigueiredo.dev/pt/</a>.</p>
+</body>
+</html>

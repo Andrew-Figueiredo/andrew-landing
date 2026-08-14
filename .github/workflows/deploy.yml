@@ -1,0 +1,79 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# O apex andrewfigueiredo.dev é servido como arquivos estáticos por um Nginx compartilhado
+# que já roda na VPS (container admin_corretor-nginx-1) e atende também outros domínios.
+# Este deploy escreve APENAS em ${{ secrets.VPS_APP_PATH }} (/opt/andrew-portfolio), que é
+# usado só pelo apex. Nenhum container é criado, reiniciado ou parado, e nenhuma porta é
+# tocada — os demais domínios não são afetados.
+
+jobs:
+  ci:
+    name: Lint, typecheck e testes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+  deploy:
+    name: Build e sincronizacao para a VPS
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - name: Conferir o build antes de publicar
+        run: |
+          set -e
+          test -f out/index.html   || { echo "out/index.html ausente"; exit 1; }
+          test -f out/pt/index.html || { echo "out/pt/index.html ausente"; exit 1; }
+          test -f out/en/index.html || { echo "out/en/index.html ausente"; exit 1; }
+          echo "Build integro: raiz, /pt/ e /en/ presentes."
+
+      - name: Preparar chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "${{ secrets.VPS_PORT }}" -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Sincronizar out/ para o diretorio do apex
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_deploy -p ${{ secrets.VPS_PORT }}" \
+            out/ \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_APP_PATH }}/"
+
+      - name: Health check
+        run: |
+          for i in 1 2 3; do
+            if curl -fsS https://andrewfigueiredo.dev/pt/ | grep -q "Andrew Figueiredo"; then
+              echo "Site respondendo com o conteudo novo."
+              exit 0
+            fi
+            echo "Tentativa $i sem confirmacao; aguardando propagacao de cache."
+            sleep 10
+          done
+          echo "Health check falhou. O site pode estar servindo versao em cache da Cloudflare."
+          exit 1
+
+      - name: Limpar chave
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
