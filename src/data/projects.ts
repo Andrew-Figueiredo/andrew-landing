@@ -79,14 +79,16 @@ export const projects: Project[] = [
   {
     id: 'lp-1',
     category: 'landing',
-    title: { pt: 'Landing page institucional', en: 'Corporate landing page' },
+    title: { pt: 'Meu Cantinho Imóveis', en: 'Meu Cantinho Imóveis' },
     description: {
-      pt: 'Página de apresentação que converte visitante em contato qualificado, com carregamento sob um segundo.',
-      en: 'Presentation page turning visitors into qualified contacts, loading in under a second.',
+      pt: 'Catálogo filtrável de imóveis com contato direto por WhatsApp, pra corretor autônomo sem presença digital parar de perder lead pra concorrência.',
+      en: 'Filterable property catalog with direct WhatsApp contact, so an independent agent without a digital presence stops losing leads to competitors.',
     },
-    stack: ['Next.js', 'Tailwind CSS'],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    repoUrl: 'https://github.com/Andrew-Figueiredo/corretor-imoveis-landing',
+    demoUrl: 'https://corretor-imoveis-landing.vercel.app/',
     featured: false,
-    year: 2025,
+    year: 2026,
   },
   {
     id: 'lp-2',
