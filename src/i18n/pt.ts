@@ -10,6 +10,7 @@ export const pt = {
     ai: 'IA',
     experience: 'Experiência',
     contact: 'Contato',
+    backToAreas: 'Todas as áreas',
     ariaMain: 'Navegação principal',
     ariaLang: 'Trocar idioma',
   },
@@ -35,7 +36,6 @@ export const pt = {
   sections: {
     aboutTitle: 'Sobre',
     servicesTitle: 'Serviços',
-    servicesClosing: 'E o que fecha o ciclo',
     projectsTitle: 'Projetos',
     processTitle: 'Como eu trabalho',
     skillsTitle: 'Skills',
@@ -68,6 +68,11 @@ export const pt = {
   contact: {
     intro: 'Disponível para consultoria, projetos e conversas técnicas.',
     email: 'E-mail',
+  },
+  home: {
+    selectorTitle: 'Escolha uma área',
+    selectorSubtitle: 'Cada área mostra os serviços, projetos e skills relevantes pra ela.',
+    selectorCta: 'Explorar',
   },
   footer: {
     rights: 'Todos os direitos reservados.',

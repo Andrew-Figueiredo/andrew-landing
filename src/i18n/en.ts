@@ -10,6 +10,7 @@ export const en: Dictionary = {
     ai: 'AI',
     experience: 'Experience',
     contact: 'Contact',
+    backToAreas: 'All areas',
     ariaMain: 'Main navigation',
     ariaLang: 'Switch language',
   },
@@ -35,7 +36,6 @@ export const en: Dictionary = {
   sections: {
     aboutTitle: 'About',
     servicesTitle: 'Services',
-    servicesClosing: 'And what closes the cycle',
     projectsTitle: 'Projects',
     processTitle: 'How I work',
     skillsTitle: 'Skills',
@@ -68,6 +68,11 @@ export const en: Dictionary = {
   contact: {
     intro: 'Available for consulting, projects and technical conversations.',
     email: 'Email',
+  },
+  home: {
+    selectorTitle: 'Choose an area',
+    selectorSubtitle: 'Each area shows the services, projects and skills relevant to it.',
+    selectorCta: 'Explore',
   },
   footer: {
     rights: 'All rights reserved.',
