@@ -21,6 +21,7 @@ export function Projects({ lang }: { lang: Locale }) {
     ia: t.projects.filterIa,
     fullstack: t.projects.filterFullstack,
     landing: t.projects.filterLanding,
+    qa: t.projects.filterQa,
   };
 
   const filters: { key: Filter; label: string }[] = [

@@ -1,5 +1,7 @@
 export type Localized = { pt: string; en: string };
 
+export type AreaId = 'fullstack' | 'ia-automacao' | 'qa';
+
 export type Service = {
   id: 'dev' | 'ai' | 'automation' | 'quality';
   icon: 'Code2' | 'BrainCircuit' | 'Workflow' | 'ShieldCheck';
@@ -40,7 +42,7 @@ export type ResearchItem = {
   sourceUrl?: string;
 };
 
-export type ProjectCategory = 'ia' | 'fullstack' | 'landing';
+export type ProjectCategory = 'ia' | 'fullstack' | 'landing' | 'qa';
 
 export type Project = {
   id: string;

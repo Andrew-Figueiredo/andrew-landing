@@ -48,6 +48,7 @@ export const pt = {
     filterIa: 'IA',
     filterFullstack: 'Fullstack',
     filterLanding: 'Landing Pages',
+    filterQa: 'QA',
     showAll: 'Ver todos',
     showLess: 'Ver menos',
     repo: 'Repositório',

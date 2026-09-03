@@ -48,6 +48,7 @@ export const en: Dictionary = {
     filterIa: 'AI',
     filterFullstack: 'Fullstack',
     filterLanding: 'Landing Pages',
+    filterQa: 'QA',
     showAll: 'Show all',
     showLess: 'Show less',
     repo: 'Repository',
