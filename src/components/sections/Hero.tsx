@@ -80,7 +80,7 @@ export function Hero({ lang, area }: { lang: Locale; area?: Area }) {
                 >
                   <h2 className="font-head text-sm font-semibold">{s.title[lang]}</h2>
                   <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {s.items.map((it) => it[lang]).join(' · ')}
+                    {s.items.slice(0, 2).map((it) => it[lang]).join(' · ')}
                   </p>
                 </div>
               ))}

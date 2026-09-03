@@ -3,7 +3,7 @@ import { projects } from './projects';
 import { experience } from './experience';
 import { services } from './services';
 import { skillGroups } from './skills';
-import { areas } from './areas';
+import { areas, categoriesForArea } from './areas';
 
 describe('áreas', () => {
   const areaIds = areas.map((a) => a.id);
@@ -57,6 +57,13 @@ describe('projects', () => {
       expect(p.title.en.length).toBeGreaterThan(0);
       expect(p.description.pt.length).toBeGreaterThan(0);
       expect(p.description.en.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('toda categoria de projeto é alcançável a partir de alguma área', () => {
+    const covered = new Set(areas.flatMap((a) => categoriesForArea(a.id)));
+    for (const p of projects) {
+      expect(covered.has(p.category)).toBe(true);
     }
   });
 });
