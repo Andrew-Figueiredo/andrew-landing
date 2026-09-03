@@ -6,7 +6,6 @@ import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Projects } from '@/components/sections/Projects';
 import { Process } from '@/components/sections/Process';
-import { Skills } from '@/components/sections/Skills';
 import { AiResearch } from '@/components/sections/AiResearch';
 import { Experience } from '@/components/sections/Experience';
 import { Contact } from '@/components/sections/Contact';
@@ -23,7 +22,6 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
         <About lang={lang} />
         <Projects lang={lang} />
         <Process lang={lang} />
-        <Skills lang={lang} />
         <AiResearch lang={lang} />
         <Experience lang={lang} />
         <Contact lang={lang} />
