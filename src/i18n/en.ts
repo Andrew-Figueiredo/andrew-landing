@@ -15,15 +15,14 @@ export const en: Dictionary = {
     ariaLang: 'Switch language',
   },
   hero: {
-    eyebrow: 'Systems Development Specialist · AI and Automation Consulting',
-    headlineBefore: 'I build the system, embed ',
-    headlineAccent: 'intelligence',
-    headlineAfter: ' and automate the operation around it.',
+    greeting: "Hi, I'm",
     subheadline:
       '5+ years building and sustaining systems, from requirements to production. Software development, AI consulting and process automation.',
     ctaProjects: 'View projects',
     ctaCv: 'Download CV',
     actuationLabel: 'Experience at',
+    statsYears: 'years of experience',
+    statsCompanies: 'companies',
   },
   about: {
     paragraphs: [

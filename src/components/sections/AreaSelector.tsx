@@ -22,13 +22,13 @@ export function AreaSelector({ lang }: { lang: Locale }) {
             <Reveal key={area.id} delay={i * 0.08}>
               <Link
                 href={`/${lang}/${area.slug[lang]}/`}
-                className="flex h-full flex-col border border-line p-5 transition-colors hover:border-accent"
+                className="group flex h-full flex-col rounded-lg border border-line bg-bg p-5 transition-colors hover:border-accent"
               >
                 <h3 className="font-head text-base font-semibold">{area.label[lang]}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
                   {area.hero.subheadline[lang]}
                 </p>
-                <span className="mt-4 text-sm font-medium text-accent">
+                <span className="mt-4 inline-flex w-fit items-center gap-1 rounded-md border border-accent px-3 py-1.5 text-xs font-medium text-accent transition-colors group-hover:bg-accent group-hover:text-white">
                   {t.home.selectorCta} ↗
                 </span>
               </Link>

@@ -15,15 +15,14 @@ export const pt = {
     ariaLang: 'Trocar idioma',
   },
   hero: {
-    eyebrow: 'Especialista em Desenvolvimento de Sistemas · Consultoria em IA e Automação',
-    headlineBefore: 'Construo o sistema, integro ',
-    headlineAccent: 'inteligência',
-    headlineAfter: ' e automatizo a operação em volta.',
+    greeting: 'Olá, eu sou',
     subheadline:
       '+5 anos construindo e sustentando sistemas, do requisito à produção. Desenvolvimento de software, consultoria em IA e automação de processos.',
     ctaProjects: 'Ver projetos',
     ctaCv: 'Baixar CV',
     actuationLabel: 'Atuação',
+    statsYears: 'anos de atuação',
+    statsCompanies: 'empresas',
   },
   about: {
     paragraphs: [

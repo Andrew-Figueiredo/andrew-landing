@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getDictionary, type Locale } from '@/i18n';
 import { profile } from '@/data/profile';
 import { services } from '@/data/services';
@@ -7,27 +8,45 @@ import { Reveal } from '@/components/Reveal';
 export function Hero({ lang, area }: { lang: Locale; area?: Area }) {
   const t = getDictionary(lang);
 
-  const eyebrow = area ? area.hero.eyebrow[lang] : t.hero.eyebrow;
-  const headlineBefore = area ? area.hero.headlineBefore[lang] : t.hero.headlineBefore;
-  const headlineAccent = area ? area.hero.headlineAccent[lang] : t.hero.headlineAccent;
-  const headlineAfter = area ? area.hero.headlineAfter[lang] : t.hero.headlineAfter;
   const subheadline = area ? area.hero.subheadline[lang] : t.hero.subheadline;
 
   return (
     <section className="mx-auto max-w-5xl px-6 pb-12 pt-16 sm:pt-24">
       <Reveal>
-        <p className="font-mono mb-6 flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.09em] text-accent">
-          <span aria-hidden className="inline-block h-px w-7 bg-accent" />
-          {eyebrow}
-        </p>
+        <div className="flex flex-col-reverse items-center gap-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex-1">
+            <p className="font-mono mb-2 flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.09em] text-accent">
+              <span aria-hidden className="inline-block h-px w-7 bg-accent" />
+              {t.hero.greeting}
+            </p>
 
-        <h1 className="font-head max-w-[20ch] text-4xl font-bold leading-[1.06] tracking-tight sm:text-5xl">
-          {headlineBefore}
-          <span className="text-accent">{headlineAccent}</span>
-          {headlineAfter}
-        </h1>
+            <h1 className="font-head max-w-[16ch] text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
+              {profile.name}
+            </h1>
 
-        <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-muted">{subheadline}</p>
+            <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-muted">{subheadline}</p>
+
+            <div className="mt-6 flex gap-6">
+              <div>
+                <p className="font-head text-xl font-bold">5+</p>
+                <p className="text-xs text-muted">{t.hero.statsYears}</p>
+              </div>
+              <div>
+                <p className="font-head text-xl font-bold">{profile.actuation.length}</p>
+                <p className="text-xs text-muted">{t.hero.statsCompanies}</p>
+              </div>
+            </div>
+          </div>
+
+          <Image
+            src={profile.photoPath}
+            alt={t.about.photoAlt}
+            width={120}
+            height={140}
+            className="h-[140px] w-[120px] flex-shrink-0 rounded-xl border border-line object-cover"
+            style={{ objectPosition: 'center 20%' }}
+          />
+        </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-2">
           {area && (
