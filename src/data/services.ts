@@ -3,7 +3,7 @@ import type { Service } from './types';
 export const services: Service[] = [
   {
     id: 'dev',
-    weight: 'primary',
+    area: 'fullstack',
     icon: 'Code2',
     title: { pt: 'Desenvolvimento de Sistemas', en: 'Systems Development' },
     items: [
@@ -14,7 +14,7 @@ export const services: Service[] = [
   },
   {
     id: 'ai',
-    weight: 'primary',
+    area: 'ia-automacao',
     icon: 'BrainCircuit',
     title: { pt: 'Consultoria em IA', en: 'AI Consulting' },
     items: [
@@ -39,7 +39,7 @@ export const services: Service[] = [
   },
   {
     id: 'automation',
-    weight: 'primary',
+    area: 'ia-automacao',
     icon: 'Workflow',
     title: { pt: 'Automação e Bots', en: 'Automation and Bots' },
     items: [
@@ -51,9 +51,7 @@ export const services: Service[] = [
   {
     id: 'quality',
     icon: 'ShieldCheck',
-    // Peso deliberadamente menor: é o que fecha o ciclo das outras três, não uma quarta oferta
-    // em pé de igualdade. Ver seção 2 da spec.
-    weight: 'secondary',
+    area: 'qa',
     title: { pt: 'Qualidade e Engenharia de Testes', en: 'Quality and Test Engineering' },
     items: [
       { pt: 'Suítes de testes automatizados integradas ao pipeline', en: 'Automated test suites wired into the pipeline' },
