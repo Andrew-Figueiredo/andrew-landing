@@ -3,11 +3,7 @@ import { isLocale } from '@/i18n';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
-import { About } from '@/components/sections/About';
-import { Process } from '@/components/sections/Process';
-import { AiResearch } from '@/components/sections/AiResearch';
-import { Experience } from '@/components/sections/Experience';
-import { Contact } from '@/components/sections/Contact';
+import { AreaSelector } from '@/components/sections/AreaSelector';
 
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -18,11 +14,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <Navbar lang={lang} />
       <main>
         <Hero lang={lang} />
-        <About lang={lang} />
-        <Process lang={lang} />
-        <AiResearch lang={lang} />
-        <Experience lang={lang} />
-        <Contact lang={lang} />
+        <AreaSelector lang={lang} />
       </main>
       <Footer lang={lang} />
     </>
