@@ -4,7 +4,6 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
-import { Projects } from '@/components/sections/Projects';
 import { Process } from '@/components/sections/Process';
 import { AiResearch } from '@/components/sections/AiResearch';
 import { Experience } from '@/components/sections/Experience';
@@ -20,7 +19,6 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <main>
         <Hero lang={lang} />
         <About lang={lang} />
-        <Projects lang={lang} />
         <Process lang={lang} />
         <AiResearch lang={lang} />
         <Experience lang={lang} />

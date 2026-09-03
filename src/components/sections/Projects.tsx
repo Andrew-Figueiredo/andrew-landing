@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { getDictionary, type Locale } from '@/i18n';
 import { projects } from '@/data/projects';
-import type { ProjectCategory } from '@/data/types';
+import { categoriesForArea } from '@/data/areas';
+import type { AreaId, ProjectCategory } from '@/data/types';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionHeading } from '@/components/SectionHeading';
 
 type Filter = 'all' | ProjectCategory;
-const ORDER: ProjectCategory[] = ['ia', 'fullstack', 'landing'];
+const ORDER: ProjectCategory[] = ['ia', 'fullstack', 'landing', 'qa'];
 
-export function Projects({ lang }: { lang: Locale }) {
+export function Projects({ lang, area }: { lang: Locale; area: AreaId }) {
   const t = getDictionary(lang);
   const reduced = useReducedMotion();
   const [filter, setFilter] = useState<Filter>('all');
@@ -24,14 +25,17 @@ export function Projects({ lang }: { lang: Locale }) {
     qa: t.projects.filterQa,
   };
 
+  const areaCategories = categoriesForArea(area);
   const filters: { key: Filter; label: string }[] = [
     { key: 'all', label: t.projects.filterAll },
-    { key: 'ia', label: t.projects.filterIa },
-    { key: 'fullstack', label: t.projects.filterFullstack },
-    { key: 'landing', label: t.projects.filterLanding },
+    ...ORDER.filter((c) => areaCategories.includes(c)).map((c) => ({
+      key: c as Filter,
+      label: categoryLabel[c],
+    })),
   ];
 
-  const sorted = [...projects].sort(
+  const base = projects.filter((p) => areaCategories.includes(p.category));
+  const sorted = [...base].sort(
     (a, b) => ORDER.indexOf(a.category) - ORDER.indexOf(b.category) || b.year - a.year,
   );
   const byFilter = filter === 'all' ? sorted : sorted.filter((p) => p.category === filter);
