@@ -2,15 +2,26 @@
 
 import Link from 'next/link';
 import type { Locale } from '@/i18n';
+import { areaById } from '@/data/areas';
+import type { AreaId } from '@/data/types';
 
 // O toggle é um <Link> real: troca a rota, não o estado. O localStorage só grava a
 // preferência para a próxima entrada pela raiz do domínio.
-export function LanguageToggle({ lang, label }: { lang: Locale; label: string }) {
+export function LanguageToggle({
+  lang,
+  label,
+  area,
+}: {
+  lang: Locale;
+  label: string;
+  area?: AreaId;
+}) {
   const other: Locale = lang === 'pt' ? 'en' : 'pt';
+  const href = area ? `/${other}/${areaById(area).slug[other]}/` : `/${other}/`;
 
   return (
     <Link
-      href={`/${other}/`}
+      href={href}
       aria-label={label}
       onClick={() => {
         try {

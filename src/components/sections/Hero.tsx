@@ -1,34 +1,62 @@
+import Image from 'next/image';
 import { getDictionary, type Locale } from '@/i18n';
 import { profile } from '@/data/profile';
 import { services } from '@/data/services';
+import type { Area } from '@/data/areas';
 import { Reveal } from '@/components/Reveal';
 
-export function Hero({ lang }: { lang: Locale }) {
+export function Hero({ lang, area }: { lang: Locale; area?: Area }) {
   const t = getDictionary(lang);
+
+  const subheadline = area ? area.hero.subheadline[lang] : t.hero.subheadline;
 
   return (
     <section className="mx-auto max-w-5xl px-6 pb-12 pt-16 sm:pt-24">
       <Reveal>
-        <p className="font-mono mb-6 flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.09em] text-accent">
-          <span aria-hidden className="inline-block h-px w-7 bg-accent" />
-          {t.hero.eyebrow}
-        </p>
+        <div className="flex flex-col-reverse items-center gap-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex-1">
+            <p className="font-mono mb-2 flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.09em] text-accent">
+              <span aria-hidden className="inline-block h-px w-7 bg-accent" />
+              {t.hero.greeting}
+            </p>
 
-        <h1 className="font-head max-w-[20ch] text-4xl font-bold leading-[1.06] tracking-tight sm:text-5xl">
-          {t.hero.headlineBefore}
-          <span className="text-accent">{t.hero.headlineAccent}</span>
-          {t.hero.headlineAfter}
-        </h1>
+            <h1 className="font-head max-w-[16ch] text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
+              {profile.name}
+            </h1>
 
-        <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-muted">{t.hero.subheadline}</p>
+            <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-muted">{subheadline}</p>
+
+            <div className="mt-6 flex gap-6">
+              <div>
+                <p className="font-head text-xl font-bold">5+</p>
+                <p className="text-xs text-muted">{t.hero.statsYears}</p>
+              </div>
+              <div>
+                <p className="font-head text-xl font-bold">{profile.actuation.length}</p>
+                <p className="text-xs text-muted">{t.hero.statsCompanies}</p>
+              </div>
+            </div>
+          </div>
+
+          <Image
+            src={profile.photoPath}
+            alt={t.about.photoAlt}
+            width={120}
+            height={140}
+            className="h-[140px] w-[120px] flex-shrink-0 rounded-xl border border-line object-cover"
+            style={{ objectPosition: 'center 20%' }}
+          />
+        </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-2">
-          <a
-            href="#projetos"
-            className="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
-          >
-            {t.hero.ctaProjects}
-          </a>
+          {area && (
+            <a
+              href="#projetos"
+              className="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              {t.hero.ctaProjects}
+            </a>
+          )}
           <a
             href={profile.cvPath}
             download
@@ -59,31 +87,25 @@ export function Hero({ lang }: { lang: Locale }) {
         </p>
       </Reveal>
 
-      <Reveal delay={0.08}>
-        {/* Só as três frentes principais. A qualidade tem peso menor e vive na seção
-            de Serviços, num bloco próprio — não disputa a primeira dobra. */}
-        <div className="mt-10 grid gap-px border-t border-line sm:grid-cols-3">
-          {services
-            .filter((s) => s.weight === 'primary')
-            .map((s, i) => (
-              <div
-                key={s.id}
-                className={i > 0 ? 'pt-5 sm:border-l sm:border-line sm:pl-5' : 'pt-5 sm:pr-5'}
-              >
-                <p className="font-mono text-[0.65rem] text-accent">
-                  {String(i + 1).padStart(2, '0')}
-                </p>
-                <h2 className="font-head mt-1 text-sm font-semibold">{s.title[lang]}</h2>
-                <p className="mt-1 text-sm leading-relaxed text-muted">
-                  {s.items
-                    .slice(0, 2)
-                    .map((it) => it[lang])
-                    .join(' · ')}
-                </p>
-              </div>
-            ))}
-        </div>
-      </Reveal>
+      {area && (
+        <Reveal delay={0.08}>
+          <div className="mt-10 grid gap-px border-t border-line sm:grid-cols-2">
+            {services
+              .filter((s) => s.area === area.id)
+              .map((s, i) => (
+                <div
+                  key={s.id}
+                  className={i > 0 ? 'pt-5 sm:border-l sm:border-line sm:pl-5' : 'pt-5 sm:pr-5'}
+                >
+                  <h2 className="font-head text-sm font-semibold">{s.title[lang]}</h2>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">
+                    {s.items.slice(0, 2).map((it) => it[lang]).join(' · ')}
+                  </p>
+                </div>
+              ))}
+          </div>
+        </Reveal>
+      )}
     </section>
   );
 }

@@ -114,4 +114,34 @@ export const projects: Project[] = [
     featured: false,
     year: 2024,
   },
+  {
+    id: 'qa-1',
+    category: 'qa',
+    title: {
+      pt: 'Suíte de testes com IA, pipeline e relatório de qualidade',
+      en: 'AI-built test suite, pipeline and quality report',
+    },
+    description: {
+      pt: 'Testes automatizados gerados com IA (Claude Code e Codex), rodando em pipeline de CI/CD com publicação de relatório Allure, eliminando a validação manual repetitiva a cada entrega.',
+      en: 'Automated tests generated with AI (Claude Code and Codex), running in a CI/CD pipeline with Allure report publishing, removing repetitive manual validation on every release.',
+    },
+    stack: ['Playwright', 'GitHub Actions', 'Allure Report'],
+    featured: false,
+    year: 2026,
+  },
+  {
+    id: 'qa-2',
+    category: 'qa',
+    title: {
+      pt: 'Testes manuais e relatórios de qualidade',
+      en: 'Manual testing and quality reports',
+    },
+    description: {
+      pt: 'Roteiros de teste manual e relatórios de execução para cenários que a automação ainda não cobre, mantendo rastreabilidade do que foi validado antes de cada release.',
+      en: "Manual test scripts and execution reports for scenarios automation doesn't yet cover, keeping traceability of what was validated before each release.",
+    },
+    stack: ['Azure DevOps', 'Documentação de testes'],
+    featured: false,
+    year: 2026,
+  },
 ];

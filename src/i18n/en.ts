@@ -10,19 +10,19 @@ export const en: Dictionary = {
     ai: 'AI',
     experience: 'Experience',
     contact: 'Contact',
+    backToAreas: 'All areas',
     ariaMain: 'Main navigation',
     ariaLang: 'Switch language',
   },
   hero: {
-    eyebrow: 'Systems Development Specialist · AI and Automation Consulting',
-    headlineBefore: 'I build the system, embed ',
-    headlineAccent: 'intelligence',
-    headlineAfter: ' and automate the operation around it.',
+    greeting: "Hi, I'm",
     subheadline:
       '5+ years building and sustaining systems, from requirements to production. Software development, AI consulting and process automation.',
     ctaProjects: 'View projects',
     ctaCv: 'Download CV',
     actuationLabel: 'Experience at',
+    statsYears: 'years of experience',
+    statsCompanies: 'companies',
   },
   about: {
     paragraphs: [
@@ -35,7 +35,6 @@ export const en: Dictionary = {
   sections: {
     aboutTitle: 'About',
     servicesTitle: 'Services',
-    servicesClosing: 'And what closes the cycle',
     projectsTitle: 'Projects',
     processTitle: 'How I work',
     skillsTitle: 'Skills',
@@ -48,6 +47,7 @@ export const en: Dictionary = {
     filterIa: 'AI',
     filterFullstack: 'Fullstack',
     filterLanding: 'Landing Pages',
+    filterQa: 'QA',
     showAll: 'Show all',
     showLess: 'Show less',
     repo: 'Repository',
@@ -67,6 +67,11 @@ export const en: Dictionary = {
   contact: {
     intro: 'Available for consulting, projects and technical conversations.',
     email: 'Email',
+  },
+  home: {
+    selectorTitle: 'Choose an area',
+    selectorSubtitle: 'Each area shows the services, projects and skills relevant to it.',
+    selectorCta: 'Explore',
   },
   footer: {
     rights: 'All rights reserved.',

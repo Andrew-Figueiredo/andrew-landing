@@ -10,19 +10,19 @@ export const pt = {
     ai: 'IA',
     experience: 'Experiência',
     contact: 'Contato',
+    backToAreas: 'Todas as áreas',
     ariaMain: 'Navegação principal',
     ariaLang: 'Trocar idioma',
   },
   hero: {
-    eyebrow: 'Especialista em Desenvolvimento de Sistemas · Consultoria em IA e Automação',
-    headlineBefore: 'Construo o sistema, integro ',
-    headlineAccent: 'inteligência',
-    headlineAfter: ' e automatizo a operação em volta.',
+    greeting: 'Olá, eu sou',
     subheadline:
       '+5 anos construindo e sustentando sistemas, do requisito à produção. Desenvolvimento de software, consultoria em IA e automação de processos.',
     ctaProjects: 'Ver projetos',
     ctaCv: 'Baixar CV',
     actuationLabel: 'Atuação',
+    statsYears: 'anos de atuação',
+    statsCompanies: 'empresas',
   },
   about: {
     paragraphs: [
@@ -35,7 +35,6 @@ export const pt = {
   sections: {
     aboutTitle: 'Sobre',
     servicesTitle: 'Serviços',
-    servicesClosing: 'E o que fecha o ciclo',
     projectsTitle: 'Projetos',
     processTitle: 'Como eu trabalho',
     skillsTitle: 'Skills',
@@ -48,6 +47,7 @@ export const pt = {
     filterIa: 'IA',
     filterFullstack: 'Fullstack',
     filterLanding: 'Landing Pages',
+    filterQa: 'QA',
     showAll: 'Ver todos',
     showLess: 'Ver menos',
     repo: 'Repositório',
@@ -67,6 +67,11 @@ export const pt = {
   contact: {
     intro: 'Disponível para consultoria, projetos e conversas técnicas.',
     email: 'E-mail',
+  },
+  home: {
+    selectorTitle: 'Escolha uma área',
+    selectorSubtitle: 'Cada área mostra os serviços, projetos e skills relevantes pra ela.',
+    selectorCta: 'Explorar',
   },
   footer: {
     rights: 'Todos os direitos reservados.',

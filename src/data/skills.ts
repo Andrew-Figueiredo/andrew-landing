@@ -1,22 +1,23 @@
 import type { SkillGroup } from './types';
 
-// A ordem comunica o posicionamento e não deve ser alterada sem revisar a spec.
-// Os quatro primeiros grupos são as frentes de atuação (web e backend formam a de
-// Desenvolvimento). Qualidade vem em quinto: declarada, mas depois das três principais.
-// Os três últimos são apoio.
+// A ordem ainda comunica posicionamento: grupos com `area` vêm antes dos três últimos
+// (data/infra/methods), que são apoio e aparecem em toda página de área.
 export const skillGroups: SkillGroup[] = [
   {
     id: 'web',
+    area: 'fullstack',
     title: { pt: 'Desenvolvimento Web', en: 'Web Development' },
     skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'React Native', 'Tailwind CSS', 'HTML/CSS'],
   },
   {
     id: 'backend',
+    area: 'fullstack',
     title: { pt: 'Backend & APIs', en: 'Backend & APIs' },
     skills: ['Python', 'Node.js', 'APIs REST', 'PostgreSQL', 'MongoDB', 'SQL'],
   },
   {
     id: 'ai',
+    area: 'ia-automacao',
     title: { pt: 'IA & Machine Learning', en: 'AI & Machine Learning' },
     skills: [
       'LLMs',
@@ -38,6 +39,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: 'automation',
+    area: 'ia-automacao',
     title: { pt: 'Automação & Bots', en: 'Automation & Bots' },
     skills: [
       'n8n',
@@ -50,6 +52,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: 'quality',
+    area: 'qa',
     title: { pt: 'Qualidade & Engenharia de Testes', en: 'Quality & Test Engineering' },
     skills: [
       'Playwright',

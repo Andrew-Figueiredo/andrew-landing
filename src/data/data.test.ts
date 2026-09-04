@@ -3,36 +3,36 @@ import { projects } from './projects';
 import { experience } from './experience';
 import { services } from './services';
 import { skillGroups } from './skills';
+import { areas, categoriesForArea } from './areas';
 
-describe('posicionamento', () => {
-  it('mantém três frentes principais e a qualidade como única secundária', () => {
-    expect(services.filter((s) => s.weight === 'primary').map((s) => s.id)).toEqual([
-      'dev',
-      'ai',
-      'automation',
-    ]);
-    expect(services.filter((s) => s.weight === 'secondary').map((s) => s.id)).toEqual(['quality']);
+describe('áreas', () => {
+  const areaIds = areas.map((a) => a.id);
+
+  it('todo Service e todo SkillGroup com área usam uma área válida', () => {
+    for (const s of services) {
+      expect(areaIds).toContain(s.area);
+    }
+    for (const g of skillGroups) {
+      if (g.area !== undefined) {
+        expect(areaIds).toContain(g.area);
+      }
+    }
   });
 
-  it('põe a qualidade depois das três frentes na ordem das skills', () => {
-    const ordem = skillGroups.map((g) => g.id);
-    const qualidade = ordem.indexOf('quality');
-    for (const frente of ['web', 'backend', 'ai', 'automation']) {
-      expect(qualidade).toBeGreaterThan(ordem.indexOf(frente));
-    }
-    // E antes dos grupos de apoio, senão fica enterrada.
-    for (const apoio of ['data', 'infra', 'methods']) {
-      expect(qualidade).toBeLessThan(ordem.indexOf(apoio));
+  it('toda área tem pelo menos um Service', () => {
+    for (const id of areaIds) {
+      expect(services.some((s) => s.area === id)).toBe(true);
     }
   });
 });
 
 describe('projects', () => {
-  it('mantém a distribuição prevista de 2 IA, 4 fullstack e 3 landing', () => {
+  it('mantém a distribuição prevista de 2 IA, 4 fullstack e 3 landing, com QA aditivo', () => {
     const count = (c: string) => projects.filter((p) => p.category === c).length;
     expect(count('ia')).toBe(2);
     expect(count('fullstack')).toBe(4);
     expect(count('landing')).toBe(3);
+    expect(count('qa')).toBeGreaterThanOrEqual(2);
   });
 
   it('tem exatamente 6 projetos em destaque', () => {
@@ -57,6 +57,13 @@ describe('projects', () => {
       expect(p.title.en.length).toBeGreaterThan(0);
       expect(p.description.pt.length).toBeGreaterThan(0);
       expect(p.description.en.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('toda categoria de projeto é alcançável a partir de alguma área', () => {
+    const covered = new Set(areas.flatMap((a) => categoriesForArea(a.id)));
+    for (const p of projects) {
+      expect(covered.has(p.category)).toBe(true);
     }
   });
 });
